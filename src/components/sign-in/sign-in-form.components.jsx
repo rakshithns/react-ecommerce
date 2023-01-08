@@ -10,10 +10,8 @@ import Button from '../button/button.component'
 import './sign-in-form-styles.scss';
 
  const defaultFormFields = {
-    displayName: '',
     email: '',
-    password: '',
-    confirmPassword: ''
+    password: ''
  }
  
  const SignInForm = () => {
@@ -31,8 +29,7 @@ import './sign-in-form-styles.scss';
         event.preventDefault();
 
         try {
-            const response = await signInAuthUserWithEmailAndPassword(email, password);
-            console.log(response);
+            await signInAuthUserWithEmailAndPassword(email, password);
             resetFormFields();
         } catch(error) {
             switch (error.code) {
@@ -54,8 +51,7 @@ import './sign-in-form-styles.scss';
     }
 
     const signInWithGoogle = async() => {
-        const { user } = await signInWithGooglePopup();
-        await createUserDocumentFromAuth(user);
+        await signInWithGooglePopup();
     }    
 
     return (
